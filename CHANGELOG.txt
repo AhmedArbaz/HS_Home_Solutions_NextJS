@@ -1,0 +1,26 @@
+CHANGELOG — H&S HOME SOLUTIONS
+
+2.0.0 (23 Oct 2026) — Next.js + Supabase
+- Converted static HTML/CSS/JS site to Next.js 14 (App Router, TypeScript); original design preserved.
+- Added Supabase database (categories, products, orders, order_items, site_settings, admins) with RLS.
+- Added secure order function create_order(): prices read from DB, optional stock tracking.
+- Added admin panel (/admin): dashboard, orders, products + image upload, categories, customers, settings.
+- Checkout now saves orders, then opens WhatsApp with the order number.
+- Old static files moved to legacy/.
+
+1.x — static storefront with 12 shortlisted products, WhatsApp checkout (see legacy/).
+
+2.1.0 (23 Oct 2026)
+- Added admin "Password" page (/admin/account) to change password from the panel.
+- Added supabase/set_admin_password.sql; make_admin.sql pre-filled with the admin email.
+
+3.0.0 (24 Oct 2026)
+- Guest login (anonymous user) from the store header; Become a seller flow.
+- Seller panel: dashboard, products, orders (with status), store profile + password.
+- Admin: Sellers and Users pages (accept / reject), dashboard cards, pending-sellers badge, setting to require user approval.
+- supabase/marketplace.sql: profiles, seller_profiles, seller_id on products/order items, RLS, updated create_order().
+
+3.1.0 (24 Oct 2026)
+- Store header now has Register / Login / Become a seller (anonymous guest login removed).
+- Registered customers are stored as "guest users"; /account/register, /account/login, /account (my orders).
+- A logged-in customer can apply to become a seller with the same account (seller_apply()).

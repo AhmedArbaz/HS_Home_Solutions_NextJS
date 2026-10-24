@@ -1,0 +1,26 @@
+H&S HOME SOLUTIONS — NEXT.JS + SUPABASE VERSION
+Prepared: 23 October 2026
+
+WHAT THIS IS
+Complete conversion of the static HTML/CSS/JS storefront into Next.js 14 (App Router, TypeScript),
+with a Supabase database and a full admin panel. See README.md for setup.
+
+INCLUDED
+- Storefront with the original design, data from Supabase (fallback sample data if no keys).
+- Cart, search, category filter, checkout that saves the order and opens WhatsApp.
+- Admin panel: dashboard, orders, products (photo upload), categories, customers, settings.
+- supabase/schema.sql (tables, RLS, order function, stock logic, storage bucket, seed data).
+- supabase/make_admin.sql (grant admin rights to a Supabase Auth user).
+- legacy/: original static website + reference files kept for traceability.
+
+STILL NOT INCLUDED
+- Online payment gateway, courier/shipping integration, email/SMS notifications.
+- Real product photographs (upload them from Admin -> Products). Until then emoji icons are shown.
+- Prices are still suggested estimates, not verified supplier/Daraz prices — confirm before selling.
+- Nothing has been deployed anywhere from this bundle.
+
+BRAND NOTES
+Business: H&S Home Solutions. Slogan: Better Home • Happier Life.
+Logo colour rule: H green + gold, ampersand (&) gold, S green (used in the admin panel and favicon).
+Checkout WhatsApp number (editable in Admin -> Settings): 923162669126.
+Alternate contact from earlier context: 0317-2363496 (not set as checkout number).

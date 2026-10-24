@@ -1,0 +1,118 @@
+:root{ --green:#075b43;--deep:#073b31;--mint:#e9f6ef;--cream:#fbfaf6;--ink:#142d29;--muted:#60716b;--line:#e2e9e4;--gold:#d89a2b}
+*{ box-sizing:border-box}
+body{ margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
+a{ color:inherit;text-decoration:none}
+button,input,select,textarea{ font:inherit}
+.top{ background:var(--deep);color:#fff;padding:9px 5%;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}
+.nav{ padding:18px 5%;display:flex;align-items:center;gap:20px;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:10}
+.brand{ display:flex;gap:10px;align-items:center;min-width:220px}
+.logo{ width:48px;height:48px;border:2px solid var(--green);border-radius:15px;display:grid;place-items:center;color:var(--green);font-size:28px}
+.brand strong{ font-size:21px;display:block}
+.brand small{ font-size:11px;color:var(--muted)}
+.search{ display:flex;flex:1;max-width:500px}
+.search input{ width:100%;padding:12px;border:1px solid var(--line);border-radius:8px 0 0 8px;min-width:0}
+.search button,.btn{ border:0;background:var(--green);color:white;padding:12px 17px;border-radius:0 8px 8px 0;cursor:pointer;font-weight:700}
+.navlinks{ display:flex;gap:16px;font-size:13px;font-weight:700}
+.hero{ padding:58px 6%;background:linear-gradient(110deg,#eff7ef,#fff5e8);display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;min-height:360px}
+.eyebrow{ color:var(--green);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px}
+.hero h1{ font-size:clamp(32px,4vw,52px);line-height:1.08;margin:14px 0}
+.hero p{ font-size:17px;color:var(--muted);line-height:1.6}
+.hero .btn{ display:inline-block;border-radius:25px;padding:14px 24px;margin-top:8px}
+.heroart{ min-height:245px;border-radius:22px;background:linear-gradient(135deg,#e6eee2,#e7b986);display:flex;align-items:center;justify-content:center;font-size:100px;box-shadow:inset 0 0 0 1px #ffffff99}
+.trust{ display:flex;gap:24px;flex-wrap:wrap;margin-top:25px;font-size:13px;font-weight:700}
+.trust span{ display:flex;gap:8px;align-items:center}
+.section{ padding:36px 5%}
+.sectionhead{ display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:20px}
+.section h2{ margin:0;font-size:25px}
+.sectionhead p{ color:var(--muted);margin:7px 0 0}
+.categories,.products{ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.category{ background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:20px 12px;text-align:center;font-weight:700;cursor:pointer}
+.category .emoji{ font-size:40px;display:block;margin-bottom:10px}
+.product{ border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.productvisual{ height:155px;background:linear-gradient(135deg,#eef4ed,#f8e8d7);display:grid;place-items:center;font-size:60px}
+.productbody{ padding:14px;display:flex;flex-direction:column;flex:1}
+.product h3{ font-size:15px;margin:0 0 8px}
+.price{ font-weight:800;color:var(--green);font-size:17px;margin-bottom:12px}
+.product small{ color:var(--muted);font-size:12px;line-height:1.5}
+.product button{ margin-top:auto;border-radius:8px;width:100%;padding:10px;margin-top:14px}
+.btn.secondary{ background:#e8f3ed;color:var(--green);border:1px solid #c8e0d2}
+.banner{ background:var(--mint);margin:8px 5% 36px;padding:25px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.banner h2{ margin:0 0 6px}
+.banner p{ margin:0;color:var(--muted)}
+footer{ background:var(--deep);color:#fff;padding:35px 5%;display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}
+footer p,footer a{ font-size:13px;color:#d4e5dc;line-height:1.8}
+.foothead{ font-weight:800;margin-bottom:10px}
+.cartbar{ position:fixed;bottom:16px;right:16px;background:var(--green);color:#fff;padding:13px 18px;border-radius:30px;box-shadow:0 8px 28px #0002;z-index:15;cursor:pointer;border:0;font-weight:700}
+.overlay{ display:none;position:fixed;inset:0;background:#10241fcc;z-index:30;align-items:center;justify-content:center;padding:16px}
+.modal{ background:#fff;border-radius:16px;padding:24px;width:min(520px,100%);max-height:90vh;overflow:auto}
+.modalhead{ display:flex;justify-content:space-between;align-items:center}
+.modalhead h2{ margin:0}
+.close{ border:0;background:#edf3ef;border-radius:8px;padding:8px;cursor:pointer}
+.field{ display:grid;gap:6px;margin:13px 0}
+.field label{ font-weight:700;font-size:13px}
+.field input,.field textarea,.field select{ padding:11px;border:1px solid #cfdcd3;border-radius:8px;width:100%}
+.cartline{ display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.qty{ display:flex;align-items:center;gap:9px}
+.qty button{ border:1px solid var(--line);background:white;border-radius:5px;cursor:pointer}
+.notice{ font-size:12px;color:var(--muted);line-height:1.5}
+.empty{ text-align:center;color:var(--muted);padding:20px}
+.hide{ display:none!important}
+
+@media(max-width:900px){ .nav{ flex-wrap:wrap}
+.navlinks{ order:3;width:100%;overflow:auto;padding-bottom:4px}
+.search{ max-width:none;order:2;flex-basis:100%}
+.hero{ grid-template-columns:1fr;padding:38px 6%}
+.heroart{ min-height:170px;font-size:70px}
+.categories,.products{ grid-template-columns:repeat(2,minmax(0,1fr))}
+footer{ grid-template-columns:1fr 1fr}
+footer>div:first-child{ grid-column:1/-1}
+}
+
+@media(max-width:480px){ .top{ font-size:11px}
+.nav{ padding:13px 4%}
+.brand{ min-width:0}
+.brand strong{ font-size:17px}
+.logo{ width:40px;height:40px}
+.hero h1{ font-size:34px}
+.section{ padding:28px 4%}
+.categories,.products{ gap:10px}
+.productvisual{ height:120px}
+.productbody{ padding:10px}
+.product h3{ font-size:13px}
+.price{ font-size:15px}
+.trust{ gap:12px}
+.banner{ margin:0 4% 28px;padding:20px}
+footer{ padding:28px 5%;grid-template-columns:1fr 1fr}
+}
+
+/* ---------- additions for the Next.js version ---------- */
+.productvisual{position:relative;overflow:hidden}
+.productvisual img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;top:8px;left:8px;background:var(--gold);color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px}
+.tag.out{background:#7a8a85}
+.tag.low{background:#c2571a}
+.price s{color:var(--muted);font-weight:400;font-size:13px;margin-left:6px}
+.product button:disabled{background:#b9c5c0;cursor:not-allowed}
+.logo{font-size:28px}
+.cartbar{font-size:14px}
+.deliveryline{display:flex;justify-content:space-between;padding:8px 0;font-size:14px}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.formrow .field{margin:13px 0 0}
+.errbox{background:#fdecec;color:#a02020;border:1px solid #f3c2c2;border-radius:8px;padding:10px 12px;font-size:13px;margin:10px 0}
+.success{text-align:center;padding:10px 0}
+.success .tick{font-size:46px}
+.success h3{margin:6px 0}
+.success .ordno{display:inline-block;background:var(--mint);color:var(--green);font-weight:800;padding:6px 14px;border-radius:20px;margin:8px 0}
+.btn.block{display:block;width:100%;border-radius:8px;text-align:center;margin-top:12px}
+.btn:disabled{opacity:.6;cursor:wait}
+.category.active{background:var(--mint);border-color:var(--green)}
+.topbar-empty{display:none}
+@media(max-width:480px){.formrow{grid-template-columns:1fr}}
+
+/* login / seller buttons in the header */
+.authbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;min-height:38px}
+.authbar .btn{padding:9px 14px;font-size:13px;white-space:nowrap}
+.authchip{background:#eef3f0;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--green)}
+.authlink{background:none;border:0;color:var(--green);font-size:12px;font-weight:700;cursor:pointer;padding:0;text-decoration:underline}
+.autherr{position:absolute;top:100%;right:0;margin-top:6px;width:min(320px,86vw);background:#fde2e0;color:#8a1c14;border-radius:10px;padding:9px 12px;font-size:12px;line-height:1.45;z-index:30;box-shadow:0 6px 20px #0002}
+@media(max-width:720px){.authbar{order:2;width:100%;justify-content:flex-start}.autherr{right:auto;left:0}}

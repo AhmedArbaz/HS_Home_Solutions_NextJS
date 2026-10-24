@@ -1,0 +1,29 @@
+/* H & S Home Solutions starter store.
+   SETUP: Replace the placeholder below with your WhatsApp number in international format.
+   Example Pakistan number: 923001234567 (no +, spaces or dashes). */
+const WHATSAPP_NUMBER = "923XXXXXXXXX";
+const products = [
+ {id:1,name:"Spice Jar Set (6 pcs)",category:"Storage",price:1899,emoji:"🫙",desc:"Keep spices neat and within easy reach."},
+ {id:2,name:"Dish Drying Rack",category:"Kitchen Tools",price:2499,emoji:"🍽️",desc:"A practical helper for everyday washing."},
+ {id:3,name:"Non-Stick Cookware Set",category:"Cookware",price:6999,emoji:"🍳",desc:"Everyday cooking essentials for your kitchen."},
+ {id:4,name:"Food Storage Containers",category:"Storage",price:1499,emoji:"🥡",desc:"Organize pantry staples and leftovers."},
+ {id:5,name:"Air Fryer",category:"Cookware",price:9999,emoji:"♨️",desc:"A handy appliance for quick meals."},
+ {id:6,name:"Kitchen Organizer Rack",category:"Home Accessories",price:2199,emoji:"🪴",desc:"Make useful space on your kitchen counter."},
+ {id:7,name:"Silicone Kitchen Utensils",category:"Kitchen Tools",price:1299,emoji:"🥄",desc:"Useful tools for mixing, serving and cooking."},
+ {id:8,name:"Decorative Planter",category:"Home Accessories",price:999,emoji:"🌿",desc:"Add a fresh touch to your home."}
+];
+let cart = {};
+let activeCategory = "All";
+const money = n => "Rs. " + n.toLocaleString("en-PK");
+function renderProducts(query="") {
+ const host=document.getElementById("products"); const q=query.trim().toLowerCase();
+ const shown=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(!q||p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)));
+ host.innerHTML=shown.length?shown.map(p=>`<article class="product"><div class="productvisual">${p.emoji}</div><div class="productbody"><h3>${p.name}</h3><small>${p.desc}</small><div class="price">${money(p.price)}</div><button class="btn" onclick="addToCart(${p.id})">＋ Add to cart</button></div></article>`).join(""):`<p class="empty">No matching products. Try another search.</p>`;
+}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();document.getElementById("openCart").animate([{transform:"scale(1)"},{transform:"scale(1.08)"},{transform:"scale(1)"}],{duration:250});}
+function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
+function renderCart(){const count=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById("cartCount").textContent=count;const host=document.getElementById("cartItems");const ids=Object.keys(cart).map(Number);if(!ids.length){host.innerHTML='<div class="empty">Your cart is empty. Add a product to get started.</div>';return;}host.innerHTML=ids.map(id=>{const p=products.find(x=>x.id===id);return `<div class="cartline"><div><strong>${p.name}</strong><br><small>${money(p.price)} each</small></div><div class="qty"><button onclick="changeQty(${id},-1)">−</button><strong>${cart[id]}</strong><button onclick="changeQty(${id},1)">+</button></div><strong>${money(p.price*cart[id])}</strong></div>`}).join("")+`<div class="cartline"><strong>Estimated total</strong><strong>${money(ids.reduce((sum,id)=>sum+products.find(p=>p.id===id).price*cart[id],0))}</strong></div>`;}
+function openWhatsApp(message){if(WHATSAPP_NUMBER.includes("X")){alert("Bhai, pehle script.js mein apna real WhatsApp number set karein (Pakistan format: 92 ke baad number). Phir WhatsApp order button kaam karega.");return;}window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,"_blank","noopener");}
+document.getElementById("openCart").addEventListener("click",()=>{renderCart();document.getElementById("cartOverlay").style.display="flex"});document.getElementById("closeCart").addEventListener("click",()=>document.getElementById("cartOverlay").style.display="none");document.getElementById("cartOverlay").addEventListener("click",e=>{if(e.target.id==="cartOverlay")e.currentTarget.style.display="none"});
+document.getElementById("checkout").addEventListener("click",()=>{const ids=Object.keys(cart).map(Number);if(!ids.length){alert("Please add at least one product to your cart.");return;}const name=document.getElementById("customerName").value.trim(),phone=document.getElementById("customerPhone").value.trim(),address=document.getElementById("customerAddress").value.trim(),payment=document.getElementById("paymentMethod").value;if(!name||!phone||!address){alert("Please fill in your name, phone number and delivery address.");return;}const lines=ids.map(id=>{const p=products.find(x=>x.id===id);return `• ${p.name} x ${cart[id]} = ${money(p.price*cart[id])}`});const total=ids.reduce((s,id)=>s+products.find(p=>p.id===id).price*cart[id],0);const msg=`Assalam-o-Alaikum H & S Home Solutions! I would like to place an order:\n\n${lines.join("\n")}\n\nEstimated total: ${money(total)} (delivery charges may apply)\nPayment: ${payment}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\nPlease confirm availability, delivery charges and final total.`;openWhatsApp(msg);});
+document.getElementById("whatsAppHelp").addEventListener("click",()=>openWhatsApp("Assalam-o-Alaikum H & S Home Solutions! I have a question about your products."));document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();activeCategory="All";renderProducts(document.getElementById("searchInput").value);document.getElementById("shop").scrollIntoView({behavior:"smooth"})});document.querySelectorAll(".category").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;renderProducts(document.getElementById("searchInput").value);document.getElementById("shop").scrollIntoView({behavior:"smooth"})}));document.getElementById("clearFilter").addEventListener("click",()=>{activeCategory="All";document.getElementById("searchInput").value="";renderProducts()});document.getElementById("year").textContent=new Date().getFullYear();renderProducts();renderCart();

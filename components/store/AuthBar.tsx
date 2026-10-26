@@ -51,9 +51,17 @@ export default function AuthBar() {
     <div className="authbar">
       {role === 'none' && (
         <>
-          <Link className="btn secondary" href="/account/register">
-            📝 Register
-          </Link>
+          <div className="register-tooltip-wrapper">
+            <Link className="btn secondary register-btn" href="/account/register">
+              <span>📝 Register</span>
+              <span className="discount-tag">Offer</span>
+            </Link>
+            <div className="register-discount-tooltip" role="tooltip">
+              <span className="tooltip-arrow"></span>
+              <span className="tooltip-icon">🎁</span>
+              <span>Register now to get discount</span>
+            </div>
+          </div>
           <Link className="btn secondary" href="/account/login">
             🔑 Login
           </Link>
